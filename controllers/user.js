@@ -24,13 +24,13 @@ export const login = async(req , res , next)=>{
         next(error);
     }
 }
-export const register  = async (req , res)=>{
+export const register  = async (req , res , next)=>{
     try {
         const {name , email , password} = req.body;
     
         let userhai = await User.findOne({email});
     
-        if(!userhai) return next(new ErrorHandler("User Already exist" , 404));
+        if(userhai) return next(new ErrorHandler("User Already exist" , 404));
     
         const hashedPassword = await bcrypt.hash(password , 10);
     
