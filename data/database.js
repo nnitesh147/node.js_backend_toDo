@@ -6,6 +6,6 @@ export const connectDB = () => {
     .connect(process.env.MONGO_URI, {
       dbName: "TodoApp",
     })
-    .then((c) => console.log("Database Connected"))
+    .then((c) => console.log(`Database Connected with ${c.connection.host}`))
     .catch((e) => console.log(e));
 };
